@@ -1,9 +1,18 @@
 // VARIABLES AND FUNCTIONS
 var myRover = {
   position: [0,0],
-  direction: 'N',
-  grid: [0,0]
+  direction: 'N'
 }
+
+var grid= [[1,2,3,4,5,6,7,8,9, 10], [1,2,3,4,5,6,7,8,9,10]]
+
+function gridArea(myRover){
+
+   
+ 
+}
+
+
 
 function goForward(myRover) {
   switch(myRover.direction) {
@@ -39,6 +48,42 @@ function goBackward(myRover) {
     }
 }
 
+function turnLeft(myRover){
+  switch(myRover.direction){
+   case 'N':
+      myRover.direction='W'
+      break;
+    case 'W':
+      myRover.direction='S'
+      break;
+    case 'S':
+      myRover.direction='E'
+      break;
+    case 'E':
+      myRover.direction='N'
+      break;
+  }
+}
+
+function turnRight(myRover){
+  switch(myRover.direction){
+   case 'N':
+      myRover.direction='E'
+      break;
+    case 'E':
+      myRover.direction='S'
+      break;
+    case 'S':
+      myRover.direction='W'
+      break;
+    case 'W':
+      myRover.direction='N'
+      break;
+  }
+}
+
+
+
 
 //INTRODUCTION AND USERPROMPT
 console.log("Welcome to project Mars Rover");
@@ -51,130 +96,31 @@ console.log("You entered: "+userInput);
 for (let numberOfCommands=0; numberOfCommands<userInput.length; numberOfCommands++){
   let letter = userInput.charAt(numberOfCommands);
 
-//MOVES FORWARDS
-  if (letter==="f" && myRover.direction==="N"){
-    if (myRover.grid[0]!==5){
-      myRover.grid[0]++;
-      goForward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
+  //MOVES FORWARDS
+  if (letter==="f"){
+    goForward(myRover);
   }
-
-  else if (letter==="f" && myRover.direction==="W"){
-    if (myRover.grid[1]!==-5){
-      myRover.grid[1]--;
-      goForward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
-  }
-
-  else if (letter==="f" && myRover.direction==="S"){
-    if (myRover.grid[0]!==-5){
-      myRover.grid[0]--;
-      goForward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
-  }
-
-  else if (letter==="f" && myRover.direction==="E"){
-    if (myRover.grid[1]!==5){
-      myRover.grid[1]++;
-      goForward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
-  }
-
-//MOVES BACKWARDS
-  else if (letter==="b" && myRover.direction==="N"){
-    if (myRover.grid[0]!==-5){
-      myRover.grid[0]--;
+  
+  //MOVES BACKWARDS    
+  else if (letter==="b"){
       goBackward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
   }
 
-  else if (letter==="b" && myRover.direction==="W"){
-    if (myRover.grid[1]!==5){
-      myRover.grid[1]--;
-      goBackward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
+  //TURNS LEFT
+  else if (letter==="l"){   
+    turnLeft(myRover);
   }
-
-  else if (letter==="b" && myRover.direction==="S"){
-    if (myRover.grid[0]!==5){
-      myRover.grid[0]++;
-      goBackward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
+  
+  //TURNS RIGHT
+  else if (letter==="r"){ 
+    turnRight(myRover);
   }
-
-  else if (letter==="b" && myRover.direction==="E"){
-    if (myRover.grid[1]!==-5){
-      myRover.grid[1]--;
-      goBackward(myRover);
-    }
-    else {
-      console.log("Rover has reached the end of the grid. Chose another command");
-    }
-  }
-
-
-  else if (letter==="l"){   //CHANGES DIRECTION TO LEFT
-    if (myRover.direction==="W") {
-      myRover.direction='S'
-    }
-    else if (myRover.direction==="N") {
-      myRover.direction='W'
-    }
-    else if (myRover.direction==="S") {
-      myRover.direction='E'
-    }
-    else if (myRover.direction==="E") {
-      myRover.direction='N'
-    }
-    else {
-      console.log( "That command does not exist")
-    }
-  }
-
-  else if (letter==="r"){   //CHANGES DIRECTION TO RIGHT
-    if (myRover.direction==="W") {
-      myRover.direction='N';
-    }
-    else if (myRover.direction==="N") {
-      myRover.direction='E'
-    }
-    else if (myRover.direction==="S") {
-      myRover.direction='W'
-    }
-    else if (myRover.direction==="E") {
-      myRover.direction='S'
-    }
-    else {
-      console.log( "That command does not exist")
-    }
-  }
-
+  
+  //ERROR
   else {
-    console.log('Invalid command.')
+    controle.log("Command "+letter+" does not exist.");
   }
-}
-
+}  
 
 //FINAL STATEMENTS
 console.log("The new position is: "+myRover.position)
