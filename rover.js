@@ -5,18 +5,6 @@ var myRover = {
   grid: [0,0]
 }
 
-
-function gridLimit(myRover) {
-  if (myRover.direction==="N" && userInput ==="f") {
-    while (myRover.grid[0]!==10){
-      myRover.grid[0]++;
-    }
-
-  }
-
-}
-
-
 function goForward(myRover) {
   switch(myRover.direction) {
     case 'N':
@@ -52,7 +40,6 @@ function goBackward(myRover) {
 }
 
 
-
 //INTRODUCTION AND USERPROMPT
 console.log("Welcome to project Mars Rover");
 console.log("The rover is currently at starting position "+myRover.position+", direction: "+myRover.direction);
@@ -64,17 +51,87 @@ console.log("You entered: "+userInput);
 for (let numberOfCommands=0; numberOfCommands<userInput.length; numberOfCommands++){
   let letter = userInput.charAt(numberOfCommands);
 
-
-  if (letter==="f"){
-    gridLimit(myRover)
-    goForward(myRover)
-
+//MOVES FORWARDS
+  if (letter==="f" && myRover.direction==="N"){
+    if (myRover.grid[0]!==5){
+      myRover.grid[0]++;
+      goForward(myRover);
     }
-
-
-  else if (letter==="b"){
-    goBackward(myRover)
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
     }
+  }
+
+  else if (letter==="f" && myRover.direction==="W"){
+    if (myRover.grid[1]!==-5){
+      myRover.grid[1]--;
+      goForward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+  else if (letter==="f" && myRover.direction==="S"){
+    if (myRover.grid[0]!==-5){
+      myRover.grid[0]--;
+      goForward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+  else if (letter==="f" && myRover.direction==="E"){
+    if (myRover.grid[1]!==5){
+      myRover.grid[1]++;
+      goForward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+//MOVES BACKWARDS
+  else if (letter==="b" && myRover.direction==="N"){
+    if (myRover.grid[0]!==-5){
+      myRover.grid[0]--;
+      goBackward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+  else if (letter==="b" && myRover.direction==="W"){
+    if (myRover.grid[1]!==5){
+      myRover.grid[1]--;
+      goBackward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+  else if (letter==="b" && myRover.direction==="S"){
+    if (myRover.grid[0]!==5){
+      myRover.grid[0]++;
+      goBackward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
+
+  else if (letter==="b" && myRover.direction==="E"){
+    if (myRover.grid[1]!==-5){
+      myRover.grid[1]--;
+      goBackward(myRover);
+    }
+    else {
+      console.log("Rover has reached the end of the grid. Chose another command");
+    }
+  }
 
 
   else if (letter==="l"){   //CHANGES DIRECTION TO LEFT
@@ -97,7 +154,7 @@ for (let numberOfCommands=0; numberOfCommands<userInput.length; numberOfCommands
 
   else if (letter==="r"){   //CHANGES DIRECTION TO RIGHT
     if (myRover.direction==="W") {
-      myRover.direction='N'
+      myRover.direction='N';
     }
     else if (myRover.direction==="N") {
       myRover.direction='E'
