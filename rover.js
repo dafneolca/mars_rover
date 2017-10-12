@@ -4,14 +4,32 @@ var myRover = {
   direction: 'N'
 }
 
-var grid= [[1,2,3,4,5,6,7,8,9, 10], [1,2,3,4,5,6,7,8,9,10]]
+var grid= [[-5,-4,-3,-2,-1,0,1,2,3,4,5], [-5,-4,-3,-2,-1,0,1,2,3,4,5]];
 
-function gridArea(myRover){
+function gridArea(grid){
+  if (myRover.position[0]===-5 || myRover.position[0]===5){
+    turnLeft(myRover)
+    console.log("You have reached the limit.")
+  }
 
-   
- 
+  else if (myRover.position[1]===-5 || myRover.position[1]===5){
+    turnLeft(myRover)
+    console.log("You have reached the limit.")
+  }
 }
 
+/**function gridArea(grid){                    //FUNCTION TO WORK ON
+  if (myRover.position[0]===grid[0[0]] || myRover.position[0]===grid[0[10]]){
+    turnLeft(myRover)
+    console.log("You have reached the limit.")
+  }
+
+  else if (myRover.position[1]===grid[0[0]] || myRover.position[1]===grid[0[0]]){
+    turnLeft(myRover)
+    console.log("You have reached the limit.")
+  }
+}
+  +**/
 
 
 function goForward(myRover) {
@@ -99,28 +117,32 @@ for (let numberOfCommands=0; numberOfCommands<userInput.length; numberOfCommands
   //MOVES FORWARDS
   if (letter==="f"){
     goForward(myRover);
+    gridArea(grid);
   }
-  
-  //MOVES BACKWARDS    
+
+  //MOVES BACKWARDS
   else if (letter==="b"){
-      goBackward(myRover);
+    goBackward(myRover);
+    gridArea(grid);
   }
 
   //TURNS LEFT
-  else if (letter==="l"){   
+  else if (letter==="l"){
     turnLeft(myRover);
+    gridArea(grid);
   }
-  
+
   //TURNS RIGHT
-  else if (letter==="r"){ 
+  else if (letter==="r"){
     turnRight(myRover);
+    gridArea(grid);
   }
-  
+
   //ERROR
   else {
     controle.log("Command "+letter+" does not exist.");
   }
-}  
+}
 
 //FINAL STATEMENTS
 console.log("The new position is: "+myRover.position)
